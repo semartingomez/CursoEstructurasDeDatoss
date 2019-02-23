@@ -98,10 +98,6 @@ public class quicksort {
 		return resp;
 	}
 
-
-
-
-
 	public static void main(String[] args) {
 		int a[]= {5,7,3,9,12,4,8,15};
 		insertionSort(a);
