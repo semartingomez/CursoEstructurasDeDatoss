@@ -22,6 +22,8 @@ public class quicksort {
 		 if(left < j-1) 
 		  quickSort(a, left, j-1);
 		 if(j+1 < right)
+			 
+			 //u
 		  quickSort(a, j+1, right);
 		}
 
