@@ -73,12 +73,12 @@ public class List {
 		if(!this.isEmpty()) {
 			head=newNode; 
 		}
-			while(rec.getNext()!=null) {
-				rec=rec.getNext();
-			}
-			rec.setNext(newNode); 
-	
-		 
+		while(rec.getNext()!=null) {
+			rec=rec.getNext();
+		}
+		rec.setNext(newNode); 
+
+
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class List {
 	{
 		Node rec=head; 
 		Node previous=rec;
-		
+
 		for(int i=0;i<index;i++) {
 			previous=rec;
 			rec=rec.getNext();
@@ -257,11 +257,11 @@ public class List {
 	{
 		int lower_boud=0, upper_bound=this.length()-1;
 		int middle=0, index=-1;
-		
+
 		while(upper_bound>lower_boud) 
 		{
 			middle=(lower_boud + upper_bound /2);
-			
+
 			if(get(middle).isEqual(node)) 
 			{
 				index=middle;
@@ -272,7 +272,7 @@ public class List {
 					lower_boud=middle + 1;
 				else
 					upper_bound=middle - 1;
-			
+
 		}
 		return index;
 	}
@@ -410,7 +410,7 @@ public class List {
 	{
 		Node rec=head;
 		List newList=new List();
-		
+
 		while(rec.next!=null) 
 		{
 			newList.insertAtEnd(rec.clone());
@@ -455,65 +455,44 @@ public class List {
 	public Node get(int index)
 	{
 		Node result=null; 
-		
+
 		if(index<this.length()) {
 			Node rec=head;
 			for (int i = 0; i <index; i++) 
 				rec=rec.getNext();
-			
+
 			result=rec.clone();
 		}
 		return result;
-			
+
 	}
+
+
+
+	/**
+	 * 
+	 * @param node
+	 * @return
+	 */
+	public int indexOf(Node node)
+	{
+		int index = -1;
+		Node temp = head;
+
+		while(temp != null)
+		{
+			index += 1;
+			if(temp.isEqual(node))
+				return index;
+
+			temp = temp.getNext();
+		}
+
+		index = -1;
+		return index;
+	}
+	}
+
+
+
 	
-
-
-	/**
-	 * 
-	 * @param node
-	 * @return
-	 */
-	public int indexOf(Node node)
-	{
-		int index = -1;
-		Node temp = head;
-
-		while(temp != null)
-		{
-			index += 1;
-			if(temp.isEqual(node))
-				return index;
-
-			temp = temp.getNext();
-		}
-
-		index = -1;
-		return index;
-	}
-
-
-
-	/**
-	 * 
-	 * @param node
-	 * @return
-	 */
-	public int indexOf(Node node)
-	{
-		int index = -1;
-		Node temp = head;
-
-		while(temp != null)
-		{
-			index += 1;
-			if(temp.isEqual(node))
-				return index;
-
-			temp = temp.getNext();
-		}
-
-		index = -1;
-		return index;
-	}
-}
