@@ -1,6 +1,5 @@
 import java.io.*;
 
-
 /*
 # Lists based on Pointers.
 #
@@ -18,9 +17,8 @@ import java.io.*;
  * @author MSc. Carlos Andres Sierra, PhD. student
  */
 public class List {
-	
+
 	public Node head = null;
-	public int size = 0;
 
 	public List() {}
 
@@ -70,22 +68,18 @@ public class List {
 	 * 
 	 * @param newNode
 	 */
-	public void insertAtEnd(Node newNode)
-	{
-		Node temp=head;
-		if(head==null) {
-			head=newNode;
-			size++;
-		}else {
-			
-			while(temp.next==null) {
-				temp=temp.next;
-			}
-			temp.setNext(newNode);
-			size++;
+	public void insertAtEnd(Node newNode){
+		Node rec = head;
+		if(!this.isEmpty()) {
+			head=newNode; 
 		}
+			while(rec.getNext()!=null) {
+				rec=rec.getNext();
+			}
+			rec.setNext(newNode); 
+	
+		 
 	}
-
 
 	/**
 	 * 
@@ -94,23 +88,17 @@ public class List {
 	 */
 	public void insertAtIndex(Node newNode, int index)
 	{
-		Node temp=head;
-		while(index>0&&temp.next!=null) {
-		temp=temp.next;
-		index--;
-	}
-		if(index==0) {
-			Node temp2=temp.next;
-			temp.setNext(newNode);
-			temp=temp.next;
-			temp.setNext(temp2);
-			size++;
-		}else {
-			return;
-		}
+		Node rec=head; 
+		Node previous=rec;
 		
-	}
+		for(int i=0;i<index;i++) {
+			previous=rec;
+			rec=rec.getNext();
+		}
+		newNode.setNext(previous.getNext());
+		previous.setNext(newNode);
 
+	}
 
 	/**
 	 * 
@@ -123,25 +111,21 @@ public class List {
 		System.gc();
 	}
 
-
 	/**
 	 * 
 	 */
 	public void deleteAtEnd()
 	{
-		Node temp=head;
-		if(temp.next==null) {
-		temp=null;
-				size--;
+		Node rec = head;
+		Node previous=rec;
+		while(rec.getNext()!=null) {
+			previous=rec;
+			rec=rec.getNext();  
 		}
-		while(temp.next.next!=null) {
-			temp=temp.next;
-		}
-			temp.setNext(null);
-			size--;
+		rec=null;
+		previous.setNext(null);
+		System.gc();
 	}
-
-
 
 	/**
 	 * 
@@ -239,6 +223,7 @@ public class List {
 		return result;
 	}
 
+
 	/**
 	 * 
 	 * @param node
@@ -268,9 +253,28 @@ public class List {
 	 * @param node
 	 * @return
 	 */
-	public Node binarySearch(Node node)
+	public int binarySearch(Node node)
 	{
-		return null;
+		int lower_boud=0, upper_bound=this.length()-1;
+		int middle=0, index=-1;
+		
+		while(upper_bound>lower_boud) 
+		{
+			middle=(lower_boud + upper_bound /2);
+			
+			if(get(middle).isEqual(node)) 
+			{
+				index=middle;
+				break;
+			}
+			else
+				if(get(middle).isLessThan(node))
+					lower_boud=middle + 1;
+				else
+					upper_bound=middle - 1;
+			
+		}
+		return index;
 	}
 
 
@@ -363,6 +367,21 @@ public class List {
 	{
 		List subList = new List();
 
+		if(begin < this.length() && end<this.length( )&& begin < end)
+		{
+			Node temp = head;
+
+			for(int i = 0; i < begin; i++)
+				temp = temp.getNext();
+
+			//while(!temp.equals(get(end)))
+			for(int i =0 ;i < (end-begin); i++)
+			{
+				subList.insertAtEnd(temp.clone());
+				temp = temp.getNext();
+			}
+		}
+
 		return subList;
 	}
 
@@ -373,7 +392,13 @@ public class List {
 	 */
 	public int length()
 	{
-		return size;
+		int cont=0;
+		Node rec = head;
+		while(rec.next!=null) {
+			rec=rec.getNext();
+			cont++;
+		}
+		return cont;
 	}
 
 
@@ -383,7 +408,15 @@ public class List {
 	 */
 	public List cloneList()
 	{
-		return null;
+		Node rec=head;
+		List newList=new List();
+		
+		while(rec.next!=null) 
+		{
+			newList.insertAtEnd(rec.clone());
+			rec=rec.getNext();
+		}
+		return newList;
 	}
 
 
@@ -421,8 +454,44 @@ public class List {
 	 */
 	public Node get(int index)
 	{
-		return null;
+		Node result=null; 
+		
+		if(index<this.length()) {
+			Node rec=head;
+			for (int i = 0; i <index; i++) 
+				rec=rec.getNext();
+			
+			result=rec.clone();
+		}
+		return result;
+			
 	}
+	
+
+
+	/**
+	 * 
+	 * @param node
+	 * @return
+	 */
+	public int indexOf(Node node)
+	{
+		int index = -1;
+		Node temp = head;
+
+		while(temp != null)
+		{
+			index += 1;
+			if(temp.isEqual(node))
+				return index;
+
+			temp = temp.getNext();
+		}
+
+		index = -1;
+		return index;
+	}
+
 
 
 	/**
