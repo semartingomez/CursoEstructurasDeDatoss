@@ -1,40 +1,20 @@
 import java.io.*;
 
-/*
-# Lists based on Pointers.
-#
-# Created by Msc. Carlos Andres Sierra on April 2018.
-# Copyright (c) 2018  Msc. Carlos Andres Sierra. Research Group on Artificial Life - ALIFE. All rights reserved.
-#
-# This file is part of DataStructuresTemplates.
-#
-# DataStructuresTemplates is free software: you can redistribute it and/or modify it under the terms of the
-# GNU General Public License as published by the Free Software Foundation, version 3.
- */
 
-/**
- * This class represents the behavior of Lists based on Pointers
- * @author MSc. Carlos Andres Sierra, PhD. student
- */
 public class List {
 
 	public Node head = null;
 
 	public List() {}
 
-	/**
-	 * 
-	 * @return
-	 */
+	
 	public boolean isEmpty()
 	{
 		return head == null ? true : false;
 	}
 
 
-	/**
-	 * 
-	 */
+
 	public void printList()
 	{
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter( System.out ));
@@ -53,10 +33,7 @@ public class List {
 	}
 
 
-	/**
-	 * 
-	 * @param newNode
-	 */
+
 	public void insertAtBegin(Node newNode)
 	{
 		newNode.setNext(head);
@@ -64,10 +41,7 @@ public class List {
 	}
 
 
-	/**
-	 * 
-	 * @param newNode
-	 */
+
 	public void insertAtEnd(Node newNode){
 		Node rec = head;
 		if(!this.isEmpty()) {
@@ -81,11 +55,7 @@ public class List {
 
 	}
 
-	/**
-	 * 
-	 * @param newNode
-	 * @param index
-	 */
+
 	public void insertAtIndex(Node newNode, int index)
 	{
 		Node rec=head; 
@@ -100,9 +70,7 @@ public class List {
 
 	}
 
-	/**
-	 * 
-	 */
+
 	public void deleteAtBegin()
 	{
 		Node temp = head;
@@ -111,9 +79,7 @@ public class List {
 		System.gc();
 	}
 
-	/**
-	 * 
-	 */
+
 	public void deleteAtEnd()
 	{
 		Node rec = head;
@@ -127,10 +93,7 @@ public class List {
 		System.gc();
 	}
 
-	/**
-	 * 
-	 * @param index
-	 */
+
 	public void deleteAtIndex(int index)
 	{
 		Node temp = head;
@@ -146,11 +109,7 @@ public class List {
 	}
 
 
-	/**
-	 * 
-	 * @param oldNode
-	 * @param newNode
-	 */
+
 	public void updateFirst(Node oldNode, Node newNode)
 	{
 		Node temp = head;
@@ -172,11 +131,6 @@ public class List {
 	}
 
 
-	/**
-	 * 
-	 * @param oldNode
-	 * @param newNode
-	 */
 	public void updateAll(Node oldNode, Node newNode)
 	{
 		Node temp = head;
@@ -201,11 +155,7 @@ public class List {
 	}
 
 
-	/**
-	 * 
-	 * @param node
-	 * @return
-	 */
+	
 	public Node linealSearch(Node node)
 	{
 		Node temp = head;
@@ -224,11 +174,7 @@ public class List {
 	}
 
 
-	/**
-	 * 
-	 * @param node
-	 * @return
-	 */
+
 	public List searchAll(Node node)
 	{
 		Node temp = head;
@@ -248,11 +194,7 @@ public class List {
 	}
 
 
-	/**
-	 * 
-	 * @param node
-	 * @return
-	 */
+
 	public int binarySearch(Node node)
 	{
 		int lower_boud=0, upper_bound=this.length()-1;
@@ -278,9 +220,7 @@ public class List {
 	}
 
 
-	/**
-	 * 
-	 */
+
 	public void reverse()
 	{
 		Stack tempStack = new Stack();
@@ -296,11 +236,7 @@ public class List {
 	}
 
 
-	/**
-	 * 
-	 * @param unsorted
-	 * @return
-	 */
+	
 	public List quickSort(List unsorted)
 	{
 		if(unsorted.length() <= 1)
@@ -357,12 +293,6 @@ public class List {
 	}
 
 
-	/**
-	 * 
-	 * @param begin
-	 * @param end
-	 * @return
-	 */
 	public List sublist(int begin, int end)
 	{
 		List subList = new List();
@@ -385,11 +315,6 @@ public class List {
 		return subList;
 	}
 
-
-	/**
-	 * 
-	 * @return
-	 */
 	public int length()
 	{
 		int cont=0;
@@ -401,11 +326,6 @@ public class List {
 		return cont;
 	}
 
-
-	/**
-	 * 
-	 * @return
-	 */
 	public List cloneList()
 	{
 		Node rec=head;
@@ -419,12 +339,6 @@ public class List {
 		return newList;
 	}
 
-
-	/**
-	 * 
-	 * @param list
-	 * @return
-	 */
 	public boolean isEqual(List list)
 	{
 		boolean isEqual = true;
@@ -446,12 +360,6 @@ public class List {
 		return isEqual;
 	}
 
-
-	/**
-	 * 
-	 * @param index
-	 * @return
-	 */
 	public Node get(int index)
 	{
 		Node result=null; 
@@ -467,13 +375,6 @@ public class List {
 
 	}
 
-
-
-	/**
-	 * 
-	 * @param node
-	 * @return
-	 */
 	public int indexOf(Node node)
 	{
 		int index = -1;

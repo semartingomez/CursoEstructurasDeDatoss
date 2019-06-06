@@ -51,11 +51,5 @@ public class Graph_LE implements Node{
 
 	}
 
-	public boolean if_exists(int label) {
-		Graph_LE search = new Graph_LE(0, label);
-		for (int i = 0; i < nodes.length(); i++)
-			if (nodes.get(i).isEqual(search)) {
-				return true;
-			}
-		return false;
-	}}
+
+	}
